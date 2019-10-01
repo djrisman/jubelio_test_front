@@ -1,0 +1,50 @@
+.navigation {
+	background-color:tomato;
+	font-weight: bold;
+}
+
+.navchild{
+	background-color: white;
+	padding-left: 1%;
+	padding-right: 1%;
+	font-size: 21px;
+	font-weight: bold;
+}
+
+.card{
+	width: 30%;
+	margin: 1%;
+}
+
+.header{
+	display: flex;
+	flex-direction: row;
+}
+
+.text-header{
+	text-align: center;
+}
+
+.addbutt{
+	margin: 2%;
+}
+
+.product-wrap{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.link{
+	text-decoration: none;
+	color: white;
+	background-color: tomato;
+	margin: 2%;
+	padding: 1%;
+	border-radius: 5%;
+}
+
+.link:hover{
+	text-decoration: none;
+	color: white;
+}
