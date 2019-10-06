@@ -21,31 +21,44 @@ class AddProduct extends React.Component {
 	  	
   }
 
-
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/productdb' />
+    }
+  }
   
-  addNewProduct = event => {
+  addNewProduct (event) {
 	event.preventDefault();
-
-	this.addProductStore([{
+	axios.post('http://localhost:3000/add_product', {
 				  		  product_name: this.state.product_name,
 						  description: this.state.description,
 						  price: this.state.price,
 						  image: this.state.image,
 						  sku: this.state.sku
-				  	}]);
-	this.setState({
-			product_name : " ",
-		  	description:" ",
-		  	price:" ",
-		  	image:" ",
-		  	sku:" ",
-	});
+				  	})
+			  .then(function (response) {
+			  	console.log(response);
+			    this.setState({
+					  	redirect: true
+				});
+			  }.bind(this))
+			  .catch(function (error) {
+			    console.log(error);
+			  });
+
   }
 
+
   addProductStore = (data) => {
+  	if(!data){
+		throw this.getError("no data is inserted!");
+	}
   	this.props.store.addProduct(data)
   }
 
+  getError = (err) => {
+  	console.log(err);
+  }
 
   getTheValue = event => {
   	const target = event.target;
@@ -77,7 +90,7 @@ class AddProduct extends React.Component {
     	<hr className="my-2" />
     	<Jumbotron className="product-wrap">
 
-    		<form onSubmit={this.addNewProduct}>
+    		<form onSubmit={this.addNewProduct.bind(this)}>
 		        <FormGroup>
 		          <Label>Product's Name</Label>
 		          <Input type="text" name="product_name" value={this.state.product_name} placeholder="Product's Name" onChange={this.getTheValue} />
@@ -93,8 +106,8 @@ class AddProduct extends React.Component {
 		          <Label>SKU</Label>
 		          <Input type="text" name="sku" value={this.state.sku} placeholder="SKU" onChange={this.getTheValue} />
 		        </FormGroup>
-		        
-		        <Input type="submit" value="Add" />
+		        {this.renderRedirect()}
+		        <Button>Add</Button>
         	</form>
 
     	</Jumbotron>

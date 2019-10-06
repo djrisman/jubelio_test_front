@@ -7,6 +7,17 @@ import { autorun, observable, computed, action, decorate } from "mobx";
 import { observer } from "mobx-react";
 
 const App	= observer(class App extends Component {
+  componentDidMount(){
+	  axios.get('http://api.elevenia.co.id/rest/prodservices/product/listing', {
+		 headers: {
+		    openapikey: '721407f393e84a28593374cc2b347a98'
+		 }
+	  })
+	  .then((response) => {
+	    console.log("dattt");
+	  });
+
+  }
 
   render(){
   	

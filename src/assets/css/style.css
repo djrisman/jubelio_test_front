@@ -25,6 +25,12 @@
 	text-align: center;
 }
 
+.loading-wrap {
+	text-align: center;
+	float: center;
+	margin:0 auto;
+}
+
 .addbutt{
 	margin: 2%;
 }

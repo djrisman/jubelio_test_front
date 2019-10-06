@@ -22,7 +22,7 @@ class EditProduct extends React.Component {
   
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/' />
+      return <Redirect to='/productdb' />
     }
   }
 
@@ -55,20 +55,13 @@ class EditProduct extends React.Component {
 			  })
 			  .then(function (response) {
 			    console.log(response);
-			  })
+            this.setState({
+            redirect:true 
+            })
+			  }.bind(this))
 			  .catch(function (error) {
 			    console.log(error);
 			  });
-			
-			
-				this.setState({
-			    	product_name : " ",
-				  	description:" ",
-				  	price:" ",
-				  	image:" ",
-				  	sku:" ",
-				  	redirect:true	
-				})
   }
 
   getTheValue = event => {
@@ -118,7 +111,7 @@ class EditProduct extends React.Component {
 		          <Input type="text" name="sku" value={this.state.sku} placeholder="SKU" onChange={this.getTheValue} />
 		        </FormGroup>
 		        {this.renderRedirect()}
-		        <Button>Add</Button>
+		        <Button>Edit</Button>
         	</form>
 
     	</Jumbotron>
